@@ -9,6 +9,7 @@ import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 /**
  * ChatHelloController
@@ -23,9 +24,27 @@ public class ChatHelloController {
     @Resource //接口模型，调用阿里云百炼平台
     private ChatModel chatModel;
 
-    @GetMapping(value="/hello/dochat")
+    /**
+     * 通用调用
+     *
+     * @param msg
+     * @return
+     */
+    @GetMapping(value = "/hello/dochat")
     public String doChat(@RequestParam(name = "msg", defaultValue = "你是谁") String msg) {
         String result = chatModel.call(msg);
+        return result;
+    }
+
+    /**
+     * 流式返回调用
+     *
+     * @param msg
+     * @return
+     */
+    @GetMapping(value = "/hello/streamchat")
+    public Flux<String> stream(@RequestParam(name = "msg", defaultValue = "你是谁") String msg) {
+        Flux<String> result = chatModel.stream(msg);
         return result;
     }
 
