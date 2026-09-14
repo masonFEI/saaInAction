@@ -1,0 +1,14 @@
+saaAtguiguV1/SAA-01HelloWorld/src/main/java/com/fxy/controller/ChatHelloController.java
+  h_996c2add31e3eb 1-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "3470c6018fac72e9e5e0e8783d8a7d709657a5db",
+  "prompts": {},
+  "humans": {
+    "h_996c2add31e3eb": {
+      "author": "feixuanyu <johnny.fei@ly.com>"
+    }
+  }
+}
