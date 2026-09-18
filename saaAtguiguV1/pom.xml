@@ -13,6 +13,7 @@
     <description>Spring AI Alibaba learning project</description>
     <modules>
         <module>SAA-01HelloWorld</module>
+        <module>SAA-02Ollama</module>
     </modules>
 
 
