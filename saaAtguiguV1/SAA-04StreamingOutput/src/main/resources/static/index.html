@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>SSE流式ChatModel+ChatClient+多模型共存</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 24px;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h2 { margin: 0 0 16px; color: #1989fa; }
+        .toolbar { margin-top: 10px; display: flex; gap: 8px; }
+        #messageInput {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            resize: vertical;
+            outline: none;
+        }
+        #messageInput:focus { border-color: #1989fa; }
+        .btn {
+            padding: 8px 18px;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn:hover { opacity: 0.85; }
+        .btn-send  { background: #1989fa; }
+        .btn-clear { background: #909399; }
+        #messages {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .msg {
+            padding: 10px 14px;
+            border-radius: 6px;
+            line-height: 1.7;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+        .msg.user {
+            border-left: 4px solid #909399;
+            background: #f4f4f5;
+            color: #303133;
+        }
+        .msg.ai {
+            border-left: 4px solid #5fb878;
+            background: #f0f9eb;
+            color: #303133;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>前端效果</h2>
+
+    <textarea id="messageInput" rows="4" cols="50"
+              placeholder="请输入你的问题..."></textarea>
+
+    <div class="toolbar">
+        <button class="btn btn-send" onclick="sendMsg()">发送提问</button>
+        <button class="btn btn-clear" onclick="clearMsg()">清空对话</button>
+    </div>
+
+    <div id="messages"></div>
+</div>
+
+<script>
+    let currentSource = null;
+
+    function appendMessage(type, text) {
+        const wrap = document.createElement('div');
+        wrap.className = 'msg ' + type;
+        wrap.textContent = text;
+        document.getElementById('messages').appendChild(wrap);
+        return wrap;
+    }
+
+    function sendMsg() {
+        const message = document.getElementById('messageInput').value;
+        if (message == "") return false;
+
+        // 清空输入框
+        document.getElementById('messageInput').value = '';
+
+        // 0. 先把用户问题渲染出来
+        appendMessage('user', message);
+
+        // 0.1 准备一个 AI 回答容器（先空着，等流式往里填）
+        const aiBox = appendMessage('ai', '');
+
+        // 如果上一次还有连接未关闭，先关掉
+        if (currentSource) {
+            currentSource.close();
+        }
+
+        // 1. 客户端使用 EventSource 连接到服务器 SSE 端点
+        const url = `/stream/chatflux4?msg=${encodeURIComponent(message)}`;
+        currentSource = new EventSource(url);
+
+        // 2. 监听消息事件
+        currentSource.onmessage = function (event) {
+            aiBox.textContent += event.data;
+        };
+
+        // 3. 监听错误事件（连接错误 / 流式结束后触发）
+        currentSource.onerror = function () {
+            if (currentSource.readyState === EventSource.CLOSED) {
+                currentSource.close();
+                currentSource = null;
+            }
+        };
+    }
+
+    function clearMsg() {
+        // 如果正在流式输出，先断开连接
+        if (currentSource) {
+            currentSource.close();
+            currentSource = null;
+        }
+        document.getElementById('messages').innerHTML = '';
+        document.getElementById('messageInput').value = '';
+    }
+</script>
+
+</body>
+</html>
