@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * ChatClientControllerV2
  *
+ * ChatModel与 ChatClient
+ *
  * @author feixuanyu
  * @version 1.0.0
  * @since 2026-09-22 22:19
