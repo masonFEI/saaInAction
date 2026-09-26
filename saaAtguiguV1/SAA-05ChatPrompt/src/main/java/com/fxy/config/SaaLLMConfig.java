@@ -17,12 +17,10 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * SaaLLMConfig
- * <p>
- * ChatModel+ChatClient+多模型共存
  *
  * @author feixuanyu
  * @version 1.0.0
- * @since 2026-09-25 13:24
+ * @since 2026-09-26 22:39
  */
 @Configuration
 public class SaaLLMConfig {
@@ -64,6 +62,5 @@ public class SaaLLMConfig {
                 .defaultOptions(ChatOptions.builder().model(QWEN_MODEL).build())
                 .build();
     }
-
 
 }
