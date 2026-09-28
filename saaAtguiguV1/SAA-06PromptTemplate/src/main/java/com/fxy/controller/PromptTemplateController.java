@@ -6,13 +6,18 @@ package com.fxy.controller;
 
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.messages.Message;
+import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.chat.prompt.SystemPromptTemplate;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,6 +41,10 @@ public class PromptTemplateController {
 
     @Resource(name = "qwenChatClient")
     private ChatClient qwenChatClient;
+
+
+    @Value("classpath:/prompttemplate/atguigu-template.txt")
+    private org.springframework.core.io.Resource userTemplate;
 
 
     /**
@@ -65,5 +74,86 @@ public class PromptTemplateController {
         return deepseekChatClient.prompt(prompt).stream().content();
     }
 
+    /**
+     * 读取模版文件实现模版功能
+     * <p>
+     * <p>
+     * 测试地址：http://localhost:8006/prompttemplate/chat2?topic=宇航员&output_format=JSON
+     *
+     * @param topic
+     * @param output_format
+     * @return
+     */
+    @GetMapping("/prompttemplate/chat2")
+    public String chat2(String topic, String output_format) {
+        PromptTemplate promptTemplate = new PromptTemplate(userTemplate);
+
+        // PromptTemplate -> Prompt
+        Prompt prompt = promptTemplate.create(Map.of("topic", topic, "output_format", output_format));
+        return deepseekChatClient.prompt(prompt).call().content();
+    }
+
+
+    /**
+     * 设定角色
+     * <p>
+     * 系统消息（SystemMessage）:设定AI的行为规则和功能边界（XXX助手/什么格式返回/字数控制多少）
+     * 用户消息（UserMessage）:用户的提问/主题
+     * <p>
+     * 测试地址：http://localhost:8006/prompttemplate/chat3?sysTopic=法律&userTopic=知识产权法
+     *
+     * @return
+     */
+    @GetMapping("/prompttemplate/chat3")
+    public String chat3(String sysTopic, String userTopic) {
+        // 1.systemPromptTemplate
+        SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate("你是{systemTopic}助手，只回答相关{systemTopic}领域的问题");
+        Message systemMessage = systemPromptTemplate.createMessage(Map.of("systemTopic", sysTopic));
+        // 2.userPromptTemplate
+        PromptTemplate userPromptTemplate = new PromptTemplate("解释一下{userTopic}");
+        Message userMessage = userPromptTemplate.createMessage(Map.of("userTopic", userTopic));
+        // 3.组合多个Message->prompt
+        Prompt prompt = new Prompt(List.of(systemMessage, userMessage));
+        // 4.调用LLM
+        return deepseekChatClient.prompt(prompt).call().content();
+    }
+
+    /**
+     * 设定角色
+     * <p>
+     * 系统消息（SystemMessage）:设定AI的行为规则和功能边界（XXX助手/什么格式返回/字数控制多少）
+     * 用户消息（UserMessage）:用户的提问/主题
+     * <p>
+     * 测试地址：http://localhost:8006/prompttemplate/chat4?sysTopic=法律&userTopic=知识产权法
+     *
+     * @return
+     */
+    @GetMapping("/prompttemplate/chat4")
+    public String chat4(String sysTopic, String userTopic) {
+        // 1.systemPromptTemplate
+        SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate("你是{systemTopic}助手，只回答相关{systemTopic}领域的问题");
+        Message systemMessage = systemPromptTemplate.createMessage(Map.of("systemTopic", sysTopic));
+        // 2.userPromptTemplate
+        PromptTemplate userPromptTemplate = new PromptTemplate("解释一下{userTopic}");
+        Message userMessage = userPromptTemplate.createMessage(Map.of("userTopic", userTopic));
+        // 3.组合多个Message->prompt
+        Prompt prompt = new Prompt(List.of(systemMessage, userMessage));
+        // 4.调用LLM
+        return deepseekChatModel.call(prompt).getResult().getOutput().getText();
+    }
+
+    /**
+     * 设定角色
+     *
+     * @return
+     */
+    @GetMapping("/prompttemplate/chat5")
+    public Flux<String> chat5(String question) {
+        return deepseekChatClient.prompt()
+                .system("你是一个法律助手，只回答法律问题，其他问题回复，我只能回答法律相关问题，其他无可奉告")
+                .user(question)
+                .stream()
+                .content();
+    }
 
 }
