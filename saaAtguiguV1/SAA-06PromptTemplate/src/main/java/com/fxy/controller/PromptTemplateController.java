@@ -125,6 +125,8 @@ public class PromptTemplateController {
      * 用户消息（UserMessage）:用户的提问/主题
      * <p>
      * 测试地址：http://localhost:8006/prompttemplate/chat4?sysTopic=法律&userTopic=知识产权法
+     * <p>
+     * deepseekChatModel
      *
      * @return
      */
