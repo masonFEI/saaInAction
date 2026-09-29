@@ -1,7 +1,7 @@
 package com.fxy.records;
 
 /**
- * StudentRecord
+ * 学生记录类
  * <p>
  * jdk14以后的新特性，记录类record= equals + hashCode + toString +entity + lombok
  *
@@ -11,6 +11,6 @@ package com.fxy.records;
  */
 public record StudentRecord(String id, String name, String major, String email) {
 
-    
+
 
 }
