@@ -18,6 +18,7 @@
         <module>SAA-04StreamingOutput</module>
         <module>SAA-05ChatPrompt</module>
         <module>SAA-06PromptTemplate</module>
+        <module>SAA-07StructuredOutput</module>
     </modules>
 
 
