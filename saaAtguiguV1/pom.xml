@@ -21,6 +21,7 @@
         <module>SAA-07StructuredOutput</module>
         <module>SAA-08Persistent</module>
         <module>SAA-09Text2Image</module>
+        <module>SAA-10Text2Voice</module>
     </modules>
 
 
