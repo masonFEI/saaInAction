@@ -22,6 +22,7 @@
         <module>SAA-08Persistent</module>
         <module>SAA-09Text2Image</module>
         <module>SAA-10Text2Voice</module>
+        <module>SAA-11Embed2Vector</module>
     </modules>
 
 
