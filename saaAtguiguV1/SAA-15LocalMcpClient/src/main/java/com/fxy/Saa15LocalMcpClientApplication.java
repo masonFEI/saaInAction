@@ -1,0 +1,25 @@
+/**
+ * LY.com Inc.
+ * Copyright (c) 2004-2026 All Rights Reserved.
+ */
+package com.fxy;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * Saa15LocalMcpClientApplication
+ *
+ * @author feixuanyu
+ * @version 1.0.0
+ * @since 2026-10-06 19:48
+ */
+@SpringBootApplication
+public class Saa15LocalMcpClientApplication {
+
+
+    public static void main(String[] args) {
+        SpringApplication.run(Saa15LocalMcpClientApplication.class, args);
+    }
+
+}

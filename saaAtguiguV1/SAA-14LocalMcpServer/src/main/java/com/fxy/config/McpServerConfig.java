@@ -7,6 +7,7 @@ package com.fxy.config;
 import com.fxy.service.WeatherService;
 import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.tool.method.MethodToolCallbackProvider;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class McpServerConfig {
 
+    @Bean
     public ToolCallbackProvider weatherToolCallbackProvider(WeatherService weatherService) {
         return MethodToolCallbackProvider.builder()
                 .toolObjects(weatherService)

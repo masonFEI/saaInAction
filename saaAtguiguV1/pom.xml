@@ -26,6 +26,7 @@
         <module>SAA-12RAG4AiOps</module>
         <module>SAA-13ToolCalling</module>
         <module>SAA-14LocalMcpServer</module>
+        <module>SAA-15LocalMcpClient</module>
     </modules>
 
 
