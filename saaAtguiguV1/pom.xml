@@ -25,6 +25,7 @@
         <module>SAA-11Embed2Vector</module>
         <module>SAA-12RAG4AiOps</module>
         <module>SAA-13ToolCalling</module>
+        <module>SAA-14LocalMcpServer</module>
     </modules>
 
 
