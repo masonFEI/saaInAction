@@ -27,6 +27,7 @@
         <module>SAA-13ToolCalling</module>
         <module>SAA-14LocalMcpServer</module>
         <module>SAA-15LocalMcpClient</module>
+        <module>SAA-16ClientCallBaiduMcpServer</module>
     </modules>
 
 

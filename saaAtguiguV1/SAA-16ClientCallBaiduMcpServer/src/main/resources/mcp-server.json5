@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "baidu-map": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@baidumap/mcp-server-baidu-map"
+      ],
+      "env": {
+        "BAIDU_MAP_API_KEY": "D59HyJP3LvofIofCXkkmrD6dqMsdi0SA"
+      }
+    }
+  }
+}
+
+// 构建McpTransport协议
+// cmd:启动windows命令行
+// /c:告诉cmd执行玩后面的命令后关闭自身
+// npx:用于执行npm包中的可执行文件
+// -y 或 --yes:自动确认操作（类似于默认接受所有提示）
