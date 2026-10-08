@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ChatHelloController {
 
-    @Resource //接口模型，调用阿里云百炼平台
-    private ChatModel chatModel;
+    @Resource // 接口模型，调用阿里云百炼平台
+    private ChatModel        chatModel;
 
     // ChatClient不支持自动注入，依赖ChatModel对象接口，ChatClient.builder(dashScopechatModel).build()
     private final ChatClient dashScopeClient;
@@ -30,7 +30,6 @@ public class ChatHelloController {
     public ChatHelloController(ChatModel dashScopechatModel) {
         this.dashScopeClient = ChatClient.builder(dashScopechatModel).build();
     }
-
 
     /**
      * 通用调用

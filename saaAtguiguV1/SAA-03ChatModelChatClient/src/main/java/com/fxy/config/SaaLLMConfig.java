@@ -21,13 +21,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SaaLLMConfig {
 
-    @Value("${spring.ai.dashscope.api-key}")
-    private String apiKey;
-
-    @Bean
-    public DashScopeApi dashScopeApi() {
-        return DashScopeApi.builder().apiKey(apiKey).build();
-    }
+    // @Value("${spring.ai.dashscope.api-key}")
+    // private String apiKey;
+    //
+    // @Bean
+    // public DashScopeApi dashScopeApi() {
+    // return DashScopeApi.builder().apiKey(apiKey).build();
+    // }
 
     @Bean
     public ChatClient chatClient(ChatModel dashscopeChatModel) {

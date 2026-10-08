@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * ChatClientControllerV2
- *
+ * <p>
  * ChatModel与 ChatClient
  *
  * @author feixuanyu
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ChatClientControllerV2 {
 
     @Resource
-    private ChatModel chatModel;
+    private ChatModel  chatModel;
 
     @Resource
     private ChatClient dashscopeChatClientV2;
@@ -51,6 +51,5 @@ public class ChatClientControllerV2 {
     public String doChatWithChatClient(@RequestParam(name = "msg", defaultValue = "2+9等于几") String msg) {
         return dashscopeChatClientV2.prompt().user(msg).call().content();
     }
-
 
 }

@@ -23,7 +23,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- 引入springai alibaba DashScope 模型适配的Starter
+        <!-- 引入spring ai alibaba DashScope 模型适配的Starter
                  SpringAI Alibaba 官方推荐模型服务灵积（DashScope）整合规则
                  -->
         <dependency>
