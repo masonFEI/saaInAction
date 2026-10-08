@@ -1,0 +1,27 @@
+saaAtguiguV1/SAA-01HelloWorld/pom.xml
+  h_e501752fc60351 27
+saaAtguiguV1/SAA-02Ollama/pom.xml
+  h_e501752fc60351 26
+saaAtguiguV1/SAA-03ChatModelChatClient/src/main/java/com/fxy/controller/ChatClientControllerV2.java
+  h_e501752fc60351 16
+  h_e501752fc60351 27
+saaAtguiguV1/SAA-03ChatModelChatClient/src/main/java/com/fxy/config/SaaLLMConfig.java
+  h_e501752fc60351 24-30
+saaAtguiguV1/SAA-03ChatModelChatClient/src/main/resources/application.properties
+  h_e501752fc60351 8
+.gitignore
+  h_e501752fc60351 1
+saaAtguiguV1/SAA-03ChatModelChatClient/src/main/java/com/fxy/controller/ChatHelloController.java
+  h_e501752fc60351 24-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "3f6260b69278dc2ede226e25ab8c85ebbd794b9d",
+  "prompts": {},
+  "humans": {
+    "h_e501752fc60351": {
+      "author": "masonFEI <994085848@qq.com>"
+    }
+  }
+}
