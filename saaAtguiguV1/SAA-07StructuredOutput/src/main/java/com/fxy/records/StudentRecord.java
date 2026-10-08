@@ -3,7 +3,7 @@ package com.fxy.records;
 /**
  * 学生记录类
  * <p>
- * jdk14以后的新特性，记录类record= equals + hashCode + toString +entity + lombok
+ * jdk14以后的新特性，记录类record= equals + hashCode + toString + entity + lombok
  *
  * @author feixuanyu
  * @version 1.0.0

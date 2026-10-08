@@ -50,7 +50,6 @@ public class ToolCallingController {
         return chatModel.call(prompt).getResult().getOutput().getText();
     }
 
-
     @Resource
     private ChatClient chatClient;
 

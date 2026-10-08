@@ -24,7 +24,7 @@ import reactor.core.publisher.Flux;
 public class RagController {
 
     @Resource(name = "qwenChatClient")
-    private ChatClient chatClient;
+    private ChatClient  chatClient;
 
     @Resource
     private VectorStore vectorStore;
@@ -44,14 +44,9 @@ public class RagController {
                 """;
 
         RetrievalAugmentationAdvisor advisor = RetrievalAugmentationAdvisor.builder()
-                .documentRetriever(VectorStoreDocumentRetriever.builder().vectorStore(vectorStore).build())
-                .build();
+            .documentRetriever(VectorStoreDocumentRetriever.builder().vectorStore(vectorStore).build()).build();
 
-        return chatClient.prompt()
-                .system(systemInfo)
-                .user(msg)
-                .advisors(advisor).stream().content();
+        return chatClient.prompt().system(systemInfo).user(msg).advisors(advisor).stream().content();
     }
-
 
 }

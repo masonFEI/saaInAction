@@ -30,10 +30,10 @@ import java.util.List;
 public class PromptController {
 
     @Resource(name = "deepseek")
-    private ChatModel deepseekChatModel;
+    private ChatModel  deepseekChatModel;
 
     @Resource(name = "qwen")
-    private ChatModel qwenChatModel;
+    private ChatModel  qwenChatModel;
 
     @Resource(name = "deepseekChatClient")
     private ChatClient deepseekChatClient;
@@ -49,13 +49,8 @@ public class PromptController {
      */
     @GetMapping(value = "/prompt/chat")
     public Flux<String> chat(@RequestParam(value = "question", defaultValue = "你好") String question) {
-        return deepseekChatClient.prompt()
-                .system("你是一个法律助手，只回答法律问题，其他问题回复，我只能回答法律相关问题，其他无可奉告")
-                .user(question)
-                .stream()
-                .content();
+        return deepseekChatClient.prompt().system("你是一个法律助手，只回答法律问题，其他问题回复，我只能回答法律相关问题，其他无可奉告").user(question).stream().content();
     }
-
 
     /**
      * 流式返回调用
@@ -92,7 +87,6 @@ public class PromptController {
         return deepseekChatModel.stream(prompt).map(r -> r.getResults().getFirst().getOutput().getText());
     }
 
-
     /**
      * 流式返回调用
      *
@@ -106,7 +100,6 @@ public class PromptController {
         return assistantMessage.getText();
     }
 
-
     /**
      * 流式返回调用
      *
@@ -115,13 +108,7 @@ public class PromptController {
      */
     @GetMapping(value = "/prompt/chat5")
     public String chat5(@RequestParam(value = "city", defaultValue = "你好") String city) {
-        String answer = deepseekChatClient.prompt()
-                .user(city + "未来三天天气情况如何")
-                .call()
-                .chatResponse()
-                .getResult()
-                .getOutput()
-                .getText();
+        String answer = deepseekChatClient.prompt().user(city + "未来三天天气情况如何").call().chatResponse().getResult().getOutput().getText();
         ToolResponseMessage toolResponseMessage = new ToolResponseMessage(List.of(new ToolResponseMessage.ToolResponse("1", "获得天气", city)));
 
         String toolResponse = toolResponseMessage.getText();

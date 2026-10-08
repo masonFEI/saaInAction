@@ -29,27 +29,23 @@ import org.springframework.context.annotation.Configuration;
 public class SaaLLMConfig {
 
     @Value("${spring.ai.dashscope.api-key}")
-    private String apiKey;
+    private String       apiKey;
 
     // 模型名称常量定义，一套系统多模型共存
     private final String DEEPSEEK_MODEL = "deepseek-v3";
 
-    private final String QWEN_MODEL = "qwen-max";
+    private final String QWEN_MODEL     = "qwen-max";
 
     @Bean(name = "deepseek")
     public ChatModel deepSeek() {
-        return DashScopeChatModel.builder()
-                .dashScopeApi(DashScopeApi.builder().apiKey(apiKey).build())
-                .defaultOptions(DashScopeChatOptions.builder().withModel(DEEPSEEK_MODEL).build())
-                .build();
+        return DashScopeChatModel.builder().dashScopeApi(DashScopeApi.builder().apiKey(apiKey).build())
+            .defaultOptions(DashScopeChatOptions.builder().withModel(DEEPSEEK_MODEL).build()).build();
     }
 
     @Bean(name = "qwen")
     public ChatModel qwen() {
-        return DashScopeChatModel.builder()
-                .dashScopeApi(DashScopeApi.builder().apiKey(apiKey).build())
-                .defaultOptions(DashScopeChatOptions.builder().withModel(QWEN_MODEL).build())
-                .build();
+        return DashScopeChatModel.builder().dashScopeApi(DashScopeApi.builder().apiKey(apiKey).build())
+            .defaultOptions(DashScopeChatOptions.builder().withModel(QWEN_MODEL).build()).build();
     }
 
     /**
@@ -63,11 +59,9 @@ public class SaaLLMConfig {
     public ChatClient deepseekChatClient(@Qualifier("deepseek") ChatModel deepseek, RedisChatMemoryRepository redisChatMemoryRepository) {
         MessageWindowChatMemory windowChatMemory = MessageWindowChatMemory.builder().chatMemoryRepository(redisChatMemoryRepository).maxMessages(10).build();
 
-        return ChatClient.builder(deepseek)
-                .defaultOptions(ChatOptions.builder().model(DEEPSEEK_MODEL).build())
-                // 顾问增强器
-                .defaultAdvisors(MessageChatMemoryAdvisor.builder(windowChatMemory).build())
-                .build();
+        return ChatClient.builder(deepseek).defaultOptions(ChatOptions.builder().model(DEEPSEEK_MODEL).build())
+            // 顾问增强器
+            .defaultAdvisors(MessageChatMemoryAdvisor.builder(windowChatMemory).build()).build();
     }
 
     /**
@@ -81,11 +75,9 @@ public class SaaLLMConfig {
     public ChatClient qwenChatClient(@Qualifier("qwen") ChatModel qwen, RedisChatMemoryRepository redisChatMemoryRepository) {
         MessageWindowChatMemory windowChatMemory = MessageWindowChatMemory.builder().chatMemoryRepository(redisChatMemoryRepository).maxMessages(10).build();
 
-        return ChatClient.builder(qwen)
-                .defaultOptions(ChatOptions.builder().model(QWEN_MODEL).build())
-                // 顾问增强器
-                .defaultAdvisors(MessageChatMemoryAdvisor.builder(windowChatMemory).build())
-                .build();
+        return ChatClient.builder(qwen).defaultOptions(ChatOptions.builder().model(QWEN_MODEL).build())
+            // 顾问增强器
+            .defaultAdvisors(MessageChatMemoryAdvisor.builder(windowChatMemory).build()).build();
     }
 
 }

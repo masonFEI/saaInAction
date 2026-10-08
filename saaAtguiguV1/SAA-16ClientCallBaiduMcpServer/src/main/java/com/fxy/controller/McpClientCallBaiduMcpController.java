@@ -21,12 +21,11 @@ import reactor.core.publisher.Flux;
 @RestController
 public class McpClientCallBaiduMcpController {
 
-
     @Resource
     private ChatClient chatClient;
 
     @Resource
-    private ChatModel chatModel;
+    private ChatModel  chatModel;
 
     /**
      * 添加了MCP调用能力
@@ -40,9 +39,7 @@ public class McpClientCallBaiduMcpController {
      */
     @GetMapping("/mcp/chat")
     public Flux<String> chat(String msg) {
-        return chatClient.prompt(msg)
-                .stream()
-                .content();
+        return chatClient.prompt(msg).stream().content();
     }
 
 }

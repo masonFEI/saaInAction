@@ -5,7 +5,6 @@
 package com.fxy.controller;
 
 import com.alibaba.cloud.ai.dashscope.audio.DashScopeSpeechSynthesisOptions;
-import com.alibaba.cloud.ai.dashscope.audio.synthesis.SpeechSynthesisMessage;
 import com.alibaba.cloud.ai.dashscope.audio.synthesis.SpeechSynthesisModel;
 import com.alibaba.cloud.ai.dashscope.audio.synthesis.SpeechSynthesisPrompt;
 import com.alibaba.cloud.ai.dashscope.audio.synthesis.SpeechSynthesisResponse;
@@ -32,9 +31,9 @@ public class Text2VoiceController {
     private SpeechSynthesisModel speechSynthesisModel;
 
     // voice model
-    public static final String BAILIAN_VOICE_MODEL = "cosyvoice-v2";
+    public static final String   BAILIAN_VOICE_MODEL  = "cosyvoice-v2";
 
-    public static final String BAILIAN_VOICE_TIMBER = "longyingcui";// 龙应催
+    public static final String   BAILIAN_VOICE_TIMBER = "longyingcui"; // 龙应催
 
     /**
      * 测试url：http://localhost:8010/t2v/voice
@@ -47,10 +46,7 @@ public class Text2VoiceController {
         String filePath = "f:\\" + UUID.randomUUID() + ".mp3";
 
         // 1. 语音参数设置
-        DashScopeSpeechSynthesisOptions options = DashScopeSpeechSynthesisOptions.builder()
-                .model(BAILIAN_VOICE_MODEL)
-                .voice(BAILIAN_VOICE_TIMBER)
-                .build();
+        DashScopeSpeechSynthesisOptions options = DashScopeSpeechSynthesisOptions.builder().model(BAILIAN_VOICE_MODEL).voice(BAILIAN_VOICE_TIMBER).build();
 
         // 2. 调用大模型语音生成对象
         SpeechSynthesisResponse response = speechSynthesisModel.call(new SpeechSynthesisPrompt(msg, options));

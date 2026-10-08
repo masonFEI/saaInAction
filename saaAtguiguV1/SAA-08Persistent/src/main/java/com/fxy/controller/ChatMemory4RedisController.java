@@ -23,10 +23,8 @@ import static org.springframework.ai.chat.memory.ChatMemory.CONVERSATION_ID;
 @RestController
 public class ChatMemory4RedisController {
 
-
     @Resource(name = "qwenChatClient")
     private ChatClient qwenChatClient;
-
 
     @Resource(name = "deepseekChatClient")
     private ChatClient deepseekChatClient;

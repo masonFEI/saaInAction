@@ -29,20 +29,18 @@ import java.util.List;
 @Configuration
 public class InitVectorDatabaseConfig {
 
-
     @Autowired
-    private VectorStore vectorStore;
+    private VectorStore                   vectorStore;
 
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
     @Value("classpath:ops.txt")
-    private Resource opsFile;
-
+    private Resource                      opsFile;
 
     @PostConstruct
     public void init() {
-        //1.读取文件
+        // 1.读取文件
         TextReader textReader = new TextReader(opsFile);
         textReader.setCharset(Charset.defaultCharset());
 
@@ -50,7 +48,7 @@ public class InitVectorDatabaseConfig {
         List<Document> list = new TokenTextSplitter().transform(textReader.read());
 
         // 3. 写入向量数据库RedisStack
-//        vectorStore.add(list);
+        // vectorStore.add(list);
 
         // 解决上面第三步，向量数据重复问题，使用redis setnx命令处理
         // 4. 去重复版本
@@ -68,13 +66,11 @@ public class InitVectorDatabaseConfig {
             vectorStore.add(list);
         } else {
             // 键已存在，跳过或者报错
-//            throw new RuntimeException("数据已存在，避免重复插入");
+            // throw new RuntimeException("数据已存在，避免重复插入");
 
             System.out.println("数据已存在，避免重复插入");
         }
 
-
     }
-
 
 }

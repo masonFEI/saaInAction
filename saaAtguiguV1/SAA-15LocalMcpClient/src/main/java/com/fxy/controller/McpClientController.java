@@ -21,13 +21,11 @@ import reactor.core.publisher.Flux;
 @RestController
 public class McpClientController {
 
-
     @Resource
     private ChatClient chatClient;// 使用了mcp支持
 
     @Resource
-    private ChatModel chatModel;// 没有纳入tool支持，普通调用
-
+    private ChatModel  chatModel; // 没有纳入tool支持，普通调用
 
     /**
      * http://localhost:8015/mcpclient/chat?msg=上海
@@ -38,9 +36,7 @@ public class McpClientController {
     @GetMapping("/mcpclient/chat")
     public Flux<String> chat(String msg) {
         System.out.println("使用了mcp");
-        return chatClient.prompt(msg)
-                .stream()
-                .content();
+        return chatClient.prompt(msg).stream().content();
     }
 
     /**
@@ -55,6 +51,5 @@ public class McpClientController {
 
         return chatModel.stream(msg);
     }
-
 
 }

@@ -22,10 +22,8 @@ import java.util.function.Consumer;
 @RestController
 public class StructuredOutputController {
 
-
     @Resource(name = "qwenChatClient")
     private ChatClient qwenChatClient;
-
 
     /**
      * 测试url：http://localhost:8007/structuredoutput/chat?sname=fei&email=110@qq.com
@@ -36,17 +34,13 @@ public class StructuredOutputController {
      */
     @GetMapping("/structuredoutput/chat")
     public StudentRecord chat(String sname, String email) {
-
         return qwenChatClient.prompt().user(new Consumer<ChatClient.PromptUserSpec>() {
             @Override
             public void accept(ChatClient.PromptUserSpec promptUserSpec) {
-                promptUserSpec.text("学号1001,,我叫{sname},大学专业计算机科学与技术，邮箱{email}")
-                        .param("sname", sname)
-                        .param("email", email);
+                promptUserSpec.text("学号1001,,我叫{sname},大学专业计算机科学与技术，邮箱{email}").param("sname", sname).param("email", email);
             }
         }).call().entity(StudentRecord.class);
     }
-
 
     /**
      * 测试url：http://localhost:8007/structuredoutput/chat2?sname=fei&email=110@qq.com
@@ -62,12 +56,8 @@ public class StructuredOutputController {
                 学号1002,,我叫{sname},大学专业软件工程，邮箱{email}
                 """;
 
-        return qwenChatClient.prompt()
-                .user(promptUserSpec -> promptUserSpec.text(stringTemplate)
-                        .param("sname", sname)
-                        .param("email", email))
-                .call()
-                .entity(StudentRecord.class);
+        return qwenChatClient.prompt().user(promptUserSpec -> promptUserSpec.text(stringTemplate).param("sname", sname).param("email", email)).call()
+            .entity(StudentRecord.class);
     }
 
 }

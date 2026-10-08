@@ -4,7 +4,6 @@
  */
 package com.fxy.service;
 
-import io.swagger.v3.oas.annotations.servers.Server;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.stereotype.Service;
 

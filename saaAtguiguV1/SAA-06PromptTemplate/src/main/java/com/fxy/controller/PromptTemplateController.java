@@ -7,7 +7,6 @@ package com.fxy.controller;
 import jakarta.annotation.Resource;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.Message;
-import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
@@ -31,21 +30,19 @@ import java.util.Map;
 public class PromptTemplateController {
 
     @Resource(name = "deepseek")
-    private ChatModel deepseekChatModel;
+    private ChatModel                            deepseekChatModel;
 
     @Resource(name = "qwen")
-    private ChatModel qwenChatModel;
+    private ChatModel                            qwenChatModel;
 
     @Resource(name = "deepseekChatClient")
-    private ChatClient deepseekChatClient;
+    private ChatClient                           deepseekChatClient;
 
     @Resource(name = "qwenChatClient")
-    private ChatClient qwenChatClient;
-
+    private ChatClient                           qwenChatClient;
 
     @Value("classpath:/prompttemplate/atguigu-template.txt")
     private org.springframework.core.io.Resource userTemplate;
-
 
     /**
      *
@@ -64,10 +61,7 @@ public class PromptTemplateController {
      */
     @GetMapping("/prompttemplate/chat")
     public Flux<String> chat(String topic, String output_format, String wordCount) {
-        PromptTemplate promptTemplate = new PromptTemplate("" +
-                "讲一个关于{topic}的故事" +
-                "并以{output_format}格式输出，" +
-                "字数在{wordCount}左右");
+        PromptTemplate promptTemplate = new PromptTemplate("讲一个关于{topic}的故事" + "并以{output_format}格式输出，" + "字数在{wordCount}左右");
 
         // PromptTemplate -> Prompt
         Prompt prompt = promptTemplate.create(Map.of("topic", topic, "output_format", output_format, "wordCount", wordCount));
@@ -92,7 +86,6 @@ public class PromptTemplateController {
         Prompt prompt = promptTemplate.create(Map.of("topic", topic, "output_format", output_format));
         return deepseekChatClient.prompt(prompt).call().content();
     }
-
 
     /**
      * 设定角色
@@ -151,11 +144,7 @@ public class PromptTemplateController {
      */
     @GetMapping("/prompttemplate/chat5")
     public Flux<String> chat5(String question) {
-        return deepseekChatClient.prompt()
-                .system("你是一个法律助手，只回答法律问题，其他问题回复，我只能回答法律相关问题，其他无可奉告")
-                .user(question)
-                .stream()
-                .content();
+        return deepseekChatClient.prompt().system("你是一个法律助手，只回答法律问题，其他问题回复，我只能回答法律相关问题，其他无可奉告").user(question).stream().content();
     }
 
 }

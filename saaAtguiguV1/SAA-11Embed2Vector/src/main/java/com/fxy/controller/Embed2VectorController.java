@@ -32,8 +32,7 @@ public class Embed2VectorController {
     private EmbeddingModel embeddingModel;
 
     @Resource
-    private VectorStore vectorStore;
-
+    private VectorStore    vectorStore;
 
     /**
      *
@@ -46,14 +45,13 @@ public class Embed2VectorController {
     @GetMapping("/text2embed")
     public EmbeddingResponse text2Embed(String msg) {
 
-        EmbeddingResponse embeddingResponse = embeddingModel.call(new EmbeddingRequest(List.of(msg),
-                DashScopeEmbeddingOptions.builder().withModel("text-embedding-v3").build()));
+        EmbeddingResponse embeddingResponse = embeddingModel
+            .call(new EmbeddingRequest(List.of(msg), DashScopeEmbeddingOptions.builder().withModel("text-embedding-v3").build()));
 
         System.out.println(Arrays.toString(embeddingResponse.getResult().getOutput()));
 
         return embeddingResponse;
     }
-
 
     /**
      * 文本向量化后，存入向量数据库redisStack
@@ -61,10 +59,7 @@ public class Embed2VectorController {
      */
     @GetMapping("/embed2Vector/add")
     public void add() {
-        List<Document> documents = List.of(
-                new Document("i study LLM"),
-                new Document("i love java")
-        );
+        List<Document> documents = List.of(new Document("i study LLM"), new Document("i love java"));
         vectorStore.add(documents);
     }
 
@@ -76,12 +71,11 @@ public class Embed2VectorController {
      * @return
      */
     @GetMapping("/embed2Vector/search")
-    public List getAll(String msg){
+    public List getAll(String msg) {
         SearchRequest searchRequest = SearchRequest.builder().query(msg).topK(2).build();
         List<Document> list = vectorStore.similaritySearch(searchRequest);
         System.out.println(list);
         return list;
     }
-
 
 }
