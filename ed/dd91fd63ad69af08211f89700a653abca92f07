@@ -1,0 +1,63 @@
+saaAtguiguV1/SAA-06PromptTemplate/src/main/java/com/fxy/controller/PromptTemplateController.java
+  h_e501752fc60351 64
+  h_e501752fc60351 33,36,39,42,147
+saaAtguiguV1/SAA-04StreamingOutput/pom.xml
+  h_e501752fc60351 26
+笔记.md
+  h_e501752fc60351 56,167-170
+saaAtguiguV1/SAA-07StructuredOutput/src/main/java/com/fxy/config/SaaLLMConfig.java
+  s_e49ecaf45a5717::t_fb3435b88bdf33 29,34,38-39,44-45,50,55
+saaAtguiguV1/SAA-07StructuredOutput/src/main/java/com/fxy/records/StudentRecord.java
+  s_e49ecaf45a5717::t_a609e9ad90df13 6
+saaAtguiguV1/SAA-04StreamingOutput/src/main/java/com/fxy/config/SaaLLMConfig.java
+  h_e501752fc60351 31,36,40-41,46-47,52,57
+saaAtguiguV1/SAA-05ChatPrompt/src/main/java/com/fxy/config/SaaLLMConfig.java
+  h_e501752fc60351 29,34,38-39,44-45,50,55
+saaAtguiguV1/SAA-05ChatPrompt/src/main/java/com/fxy/controller/PromptController.java
+  h_e501752fc60351 33,36,52,111
+saaAtguiguV1/SAA-06PromptTemplate/src/main/java/com/fxy/config/SaaLLMConfig.java
+  h_e501752fc60351 29,34,38-39,44-45,50,55
+saaAtguiguV1/SAA-07StructuredOutput/src/main/java/com/fxy/controller/StructuredOutputController.java
+  h_e501752fc60351 40,59-60
+saaAtguiguV1/SAA-08Persistent/src/main/java/com/fxy/config/RedisMemoryConfig.java
+  h_e501752fc60351 26,33
+saaAtguiguV1/SAA-08Persistent/src/main/java/com/fxy/config/SaaLLMConfig.java
+  h_e501752fc60351 32,37,41-42,47-48,62-64,78-80
+saaAtguiguV1/SAA-09Text2Image/src/main/java/com/fxy/controller/Text2ImageController.java
+  h_e501752fc60351 28,38
+saaAtguiguV1/SAA-10Text2Voice/src/main/java/com/fxy/controller/Text2VoiceController.java
+  h_e501752fc60351 34,36,49
+saaAtguiguV1/SAA-11Embed2Vector/src/main/java/com/fxy/controller/Embed2VectorController.java
+  h_e501752fc60351 35,48-49,62,74
+saaAtguiguV1/SAA-12RAG4AiOps/src/main/java/com/fxy/config/InitVectorDatabaseConfig.java
+  h_e501752fc60351 33,39,43,51,69
+saaAtguiguV1/SAA-12RAG4AiOps/src/main/java/com/fxy/config/SaaLLMConfig.java
+  h_e501752fc60351 29,34,38-39,44-45,50,55
+saaAtguiguV1/SAA-12RAG4AiOps/src/main/java/com/fxy/controller/RagController.java
+  h_e501752fc60351 27,47,49
+saaAtguiguV1/SAA-15LocalMcpClient/src/main/java/com/fxy/controller/McpClientController.java
+  h_e501752fc60351 28,39
+saaAtguiguV1/SAA-16ClientCallBaiduMcpServer/src/main/java/com/fxy/controller/McpClientCallBaiduMcpController.java
+  h_e501752fc60351 28,42
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "eddd91fd63ad69af08211f89700a653abca92f07",
+  "prompts": {},
+  "humans": {
+    "h_e501752fc60351": {
+      "author": "masonFEI <994085848@qq.com>"
+    }
+  },
+  "sessions": {
+    "s_e49ecaf45a5717": {
+      "agent_id": {
+        "tool": "codex",
+        "id": "01a0f0d5-24a3-7a13-b5bb-2dc2b9c7a78a",
+        "model": "gpt-6-sol"
+      },
+      "human_author": "masonFEI <994085848@qq.com>"
+    }
+  }
+}
