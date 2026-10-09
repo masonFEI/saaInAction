@@ -1,0 +1,24 @@
+saaAtguiguV1/SAA-17MiniMax/src/main/resources/application.properties
+  h_e501752fc60351 1-10
+saaAtguiguV1/pom.xml
+  h_e501752fc60351 31
+saaAtguiguV1/SAA-17MiniMax/src/main/java/com/fxy/config/SaaLLMConfig.java
+  h_e501752fc60351 1-27
+saaAtguiguV1/SAA-17MiniMax/pom.xml
+  h_e501752fc60351 1-35
+saaAtguiguV1/SAA-17MiniMax/src/main/java/com/fxy/Saa17MIniMaxApplication.java
+  h_e501752fc60351 1-25
+saaAtguiguV1/SAA-17MiniMax/src/main/java/com/fxy/controller/ChatClientController.java
+  h_e501752fc60351 1-39
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "4bb1c7aaa87f952d695a44d179a7052fd0ba1093",
+  "prompts": {},
+  "humans": {
+    "h_e501752fc60351": {
+      "author": "masonFEI <994085848@qq.com>"
+    }
+  }
+}
