@@ -15,7 +15,7 @@
 | 向量/记忆存储 | Redis Stack（RedisSearch） |
 | 本地推理 | Ollama（`qwen3:4b`） |
 
-模型主要走 **阿里云百炼 DashScope**（`qwen-plus` / `qwen-max` / `deepseek-v3` / `deepseek-r1`），另有文生图、文生语音与向量模型。
+模型主要走 **阿里云百炼 DashScope**（`qwen-plus` / `qwen-max` / `deepseek-v3` / `deepseek-r1`），另有文生图、文生语音与向量模型；模块 17 演示以 **OpenAI 兼容协议**接入 MiniMax 模型服务。
 
 ## 模块地图
 
@@ -39,6 +39,7 @@
 | [SAA-14LocalMcpServer](saaAtguiguV1/SAA-14LocalMcpServer) | 8014 | 自建 MCP Server（以天气查询服务为例） | 启动后暴露 SSE 端点 |
 | [SAA-15LocalMcpClient](saaAtguiguV1/SAA-15LocalMcpClient) | 8015 | MCP Client 调用本地 MCP Server | `/mcpclient/chat` |
 | [SAA-16ClientCallBaiduMcpServer](saaAtguiguV1/SAA-16ClientCallBaiduMcpServer) | 8016 | MCP Client 调用百度地图远程 MCP Server（stdio + npx） | `/mcp/chat` |
+| [SAA-17MiniMax](saaAtguiguV1/SAA-17MiniMax) | 8017 | 接入 MiniMax 模型服务：`spring-ai-starter-model-openai` 复用 OpenAI 兼容协议 | `/minimax/chat` |
 
 ## 快速开始
 
@@ -68,12 +69,13 @@ http://localhost:8013/toolcall/chat?msg=你是谁现在几点了
 - **Redis Stack**：`localhost:6379`（模块 08 / 11 / 12 / 13 依赖）
 - **Ollama**（可选）：`localhost:11434`，模块 02 依赖
 - **Node.js / npx**：模块 16 通过 `npx -y @baidumap/mcp-server-baidu-map` 拉起远程 MCP Server，需自备百度地图 API Key
+- **MiniMax API Key**（可选）：模块 17 的 `spring.ai.openai.api-key`，配合 `https://api.minimaxi.com` 与 `MiniMax-M3` 模型
 
 Maven 仓库配置在父 `pom.xml`：公司内网 Nexus 优先，阿里云公共仓库与 Spring Milestones 兜底。内网地址换成自己的即可。
 
 ## 学习路径
 
-建议按模块编号顺序推进：`01 → 02` 打通调用链路，`03 → 08` 掌握 API 抽象层与提示词/记忆，`09 → 13` 进入多模态与 RAG/Tool Calling，`14 → 16` 进阶 MCP 协议。
+建议按模块编号顺序推进：`01 → 02` 打通调用链路，`03 → 08` 掌握 API 抽象层与提示词/记忆，`09 → 13` 进入多模态与 RAG/Tool Calling，`14 → 16` 进阶 MCP 协议，`17` 拓展第三方模型服务接入。
 
 每个模块对应的理论要点已整理在 [笔记.md](笔记.md)。
 
