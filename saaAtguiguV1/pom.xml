@@ -29,6 +29,7 @@
         <module>SAA-15LocalMcpClient</module>
         <module>SAA-16ClientCallBaiduMcpServer</module>
         <module>SAA-17MiniMax</module>
+        <module>SAA-18StreamableMcpServer</module>
     </modules>
 
 
