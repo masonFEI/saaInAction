@@ -1,0 +1,14 @@
+README.md
+  h_e501752fc60351 3,13-14,24-25,45-46,78-86,91
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "6cb0ae96914a46ec8480553b7a3f82ecb2da8f31",
+  "prompts": {},
+  "humans": {
+    "h_e501752fc60351": {
+      "author": "masonFEI <994085848@qq.com>"
+    }
+  }
+}
