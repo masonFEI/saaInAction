@@ -1,0 +1,37 @@
+saaAtguiguV1/SAA-18StreamableMcpServer/src/main/java/com/fxy/config/McpServerConfig.java
+  h_e501752fc60351 1-32
+saaAtguiguV1/SAA-18StreamableMcpServer/src/main/resources/application.properties
+  h_e501752fc60351 1-9
+笔记.md
+  h_e501752fc60351 81,83-84,187,211-230
+  h_e501752fc60351 190-193
+saaAtguiguV1/SAA-18StreamableMcpServer/src/main/java/com/fxy/service/LocationService.java
+  h_e501752fc60351 1-28
+saaAtguiguV1/pom.xml
+  h_e501752fc60351 33
+saaAtguiguV1/SAA-19StreamableMcpClient/src/main/java/com/fxy/Saa19StreamableMcpClientApplication.java
+  h_e501752fc60351 1-24
+saaAtguiguV1/SAA-19StreamableMcpClient/src/main/resources/application.properties
+  h_e501752fc60351 1-14
+saaAtguiguV1/SAA-19StreamableMcpClient/pom.xml
+  h_e501752fc60351 1-71
+saaAtguiguV1/SAA-18StreamableMcpServer/src/main/java/com/fxy/Saa18StreamableMcpServer.java
+  h_e501752fc60351 1-4,7-9,11,15-16,18-22,24-25
+saaAtguiguV1/SAA-19StreamableMcpClient/src/main/java/com/fxy/controller/McpClientController.java
+  h_e501752fc60351 1-37
+saaAtguiguV1/SAA-19StreamableMcpClient/src/main/java/com/fxy/config/SaaLLMConfig.java
+  h_e501752fc60351 1-34
+saaAtguiguV1/SAA-18StreamableMcpServer/pom.xml
+  h_e501752fc60351 20-43
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "abdf0b620578f69e33cd15f39c9f9be7a9d21a2a",
+  "prompts": {},
+  "humans": {
+    "h_e501752fc60351": {
+      "author": "masonFEI <994085848@qq.com>"
+    }
+  }
+}
