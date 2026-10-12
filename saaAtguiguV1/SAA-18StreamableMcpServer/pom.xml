@@ -17,7 +17,30 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!--spring-boot-starter 会使用tomcat启动，而不是netty启动，从而导致mcpserver启动失败，但程序启动是正常的，mcp客户端连接不上-->
+    <!--
+      【子模块级版本覆盖】
+      父 pom 的 spring-ai.version=1.0.0 只支持 SSE，MCP Streamable HTTP 从 Spring AI 1.1.0-M1 起才支持。
+      子模块自己的 dependencyManagement 优先于从父 pom 继承的 dependencyManagement，
+      所以这里重新 import 一次 BOM，就能让 18/19 单独跑在 1.1.2 上，
+      而 01-17 继续使用父 pom 的 1.0.0，互不影响。
+    -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>1.1.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--
+      注意：这里必须用 spring-boot-starter 而不是 spring-boot-starter-web。
+      引入 web 会带上 Tomcat，MCP Server 的路由由 WebFlux(Reactor Netty) 提供，
+      容器冲突会导致程序虽能启动但 MCP 端点不可用。
+    -->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
