@@ -1,6 +1,6 @@
 # saaInAction
 
-**Spring AI Alibaba（SAA** 的学习工程 —— 每个章节对应一个可独立运行的模块，配套 [笔记.md](笔记.md) 记录理论沉淀。
+**Spring AI Alibaba（SAA）** 的学习工程 —— 每个章节对应一个可独立运行的模块，配套 [笔记.md](笔记.md) 记录理论沉淀。
 
 > 学习笔记性质，代码以「跑通知识点」为目标，不追求工程完备性。
 
@@ -10,8 +10,8 @@
 | --- | --- |
 | JDK | 21 |
 | Spring Boot | 3.5.5 |
-| Spring AI | 1.0.0 |
-| Spring AI Alibaba | 1.0.0.2 |
+| Spring AI | 1.0.0（模块 18 / 19 单独覆盖为 1.1.2） |
+| Spring AI Alibaba | 1.0.0.2（模块 19 单独覆盖为 1.1.2.4-security-fix） |
 | 向量/记忆存储 | Redis Stack（RedisSearch） |
 | 本地推理 | Ollama（`qwen3:4b`） |
 
@@ -20,6 +20,8 @@
 ## 模块地图
 
 父工程 `saaAtguiguV1` 统一管理依赖版本，各模块独立启动，端口从 8001 递增。
+
+> **版本分层**：模块 01–17 使用父 pom 的 Spring AI 1.0.0；MCP Streamable HTTP 需 1.1.0-M1 以上支持，因此模块 18 / 19 在各自 pom 里重新 import BOM，单独跑在 Spring AI 1.1.2 上，父子互不影响。
 
 | 模块 | 端口 | 核心知识点 | 测试入口 |
 | --- | --- | --- | --- |
@@ -40,6 +42,8 @@
 | [SAA-15LocalMcpClient](saaAtguiguV1/SAA-15LocalMcpClient) | 8015 | MCP Client 调用本地 MCP Server | `/mcpclient/chat` |
 | [SAA-16ClientCallBaiduMcpServer](saaAtguiguV1/SAA-16ClientCallBaiduMcpServer) | 8016 | MCP Client 调用百度地图远程 MCP Server（stdio + npx） | `/mcp/chat` |
 | [SAA-17MiniMax](saaAtguiguV1/SAA-17MiniMax) | 8017 | 接入 MiniMax 模型服务：`spring-ai-starter-model-openai` 复用 OpenAI 兼容协议 | `/minimax/chat` |
+| [SAA-18StreamableMcpServer](saaAtguiguV1/SAA-18StreamableMcpServer) | 8018 | Streamable HTTP 传输的 MCP Server（`@Tool` 虚拟坐标服务） | 启动后暴露 `/mcp` 端点 |
+| [SAA-19StreamableMcpClient](saaAtguiguV1/SAA-19StreamableMcpClient) | 8019 | Streamable HTTP 传输的 MCP Client，连接模块 18 | `/streamablemcpclient/chat` |
 
 ## 快速开始
 
@@ -71,11 +75,20 @@ http://localhost:8013/toolcall/chat?msg=你是谁现在几点了
 - **Node.js / npx**：模块 16 通过 `npx -y @baidumap/mcp-server-baidu-map` 拉起远程 MCP Server，需自备百度地图 API Key
 - **MiniMax API Key**（可选）：模块 17 的 `spring.ai.openai.api-key`，配合 `https://api.minimaxi.com` 与 `MiniMax-M3` 模型
 
+### MCP 模块的启动顺序
+
+MCP 章节的模块分「服务端」和「客户端」，跑客户端前需先启动对应服务端：
+
+| 模块 | 角色 | 需先启动 |
+| --- | --- | --- |
+| SAA-14 / SAA-15 | SSE 传输的 Server / Client | 模块 14（`:8014`） |
+| SAA-18 / SAA-19 | Streamable HTTP 传输的 Server / Client | 模块 18（`:8018/mcp`） |
+
 Maven 仓库配置在父 `pom.xml`：公司内网 Nexus 优先，阿里云公共仓库与 Spring Milestones 兜底。内网地址换成自己的即可。
 
 ## 学习路径
 
-建议按模块编号顺序推进：`01 → 02` 打通调用链路，`03 → 08` 掌握 API 抽象层与提示词/记忆，`09 → 13` 进入多模态与 RAG/Tool Calling，`14 → 16` 进阶 MCP 协议，`17` 拓展第三方模型服务接入。
+建议按模块编号顺序推进：`01 → 02` 打通调用链路，`03 → 08` 掌握 API 抽象层与提示词/记忆，`09 → 13` 进入多模态与 RAG/Tool Calling，`14 → 16` 进阶 MCP 协议（SSE / stdio），`17` 拓展第三方模型服务接入，`18 → 19` 对比 SSE 与 Streamable HTTP 两种 MCP 传输方式。
 
 每个模块对应的理论要点已整理在 [笔记.md](笔记.md)。
 
