@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <!--spring-boot-starter 会使用tomcat启动，而不是netty启动，从而导致mcpserver启动失败，但程序启动是正常的，mcp客户端连接不上-->
+    <!--spring-boot-starter-web 会使用tomcat启动，而不是netty启动，从而导致mcpserver启动失败，但程序启动是正常的，mcp客户端连接不上-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
