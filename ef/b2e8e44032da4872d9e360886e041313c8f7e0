@@ -1,0 +1,16 @@
+.gitignore
+  h_e501752fc60351 1-40
+SAA-01HelloWorld/src/main/java/com/fxy/config/SaaLLMConfig.java
+  h_e501752fc60351 1-30
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "efb2e8e44032da4872d9e360886e041313c8f7e0",
+  "prompts": {},
+  "humans": {
+    "h_e501752fc60351": {
+      "author": "masonFEI <994085848@qq.com>"
+    }
+  }
+}
