@@ -1,0 +1,14 @@
+SAA-14LocalMcpServer/pom.xml
+  h_e501752fc60351 20
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.2",
+  "base_commit_sha": "c23b273d93d13da6adfe1301dfd09535ce348788",
+  "prompts": {},
+  "humans": {
+    "h_e501752fc60351": {
+      "author": "masonFEI <994085848@qq.com>"
+    }
+  }
+}
